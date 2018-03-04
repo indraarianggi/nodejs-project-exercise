@@ -4,6 +4,11 @@
 var express = require('express');
 var app = express();                        // mendefinisikan app menggunakan express
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var Bear = require('./app/models/bear');
+
+// koneksi ke mongodb database lokal
+mongoose.connect('mongodb://localhost/beardb');
 
 // konfigurasi app untuk menggunakan body-parser
 // ini mengijinkan untuk mendapatkan data dari metode POST
