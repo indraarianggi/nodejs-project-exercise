@@ -22,6 +22,18 @@ passport.use('local.signup', new LocalStrategy(
         passReqToCallback: true
     },
     (req, email, password, done) => {
+        // validasi
+        req.checkBody('email', 'Invalid email').notEmpty().isEmail();
+        req.checkBody('password', 'Invalid password').notEmpty().isLength({min:4});
+        var errors = req.validationErrors();
+        if (errors) {
+            var messages = [];
+            errors.forEach((error) => {
+                messages.push(error.msg);
+            });
+            return done(null, false, req.flash('error', messages));
+        }
+
         // mencari apakah data yang diinputkan sudah ada
         User.findOne({'email': email}, (err, user) => {
             if (err) {
