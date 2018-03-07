@@ -13,7 +13,7 @@ passport.deserializeUser((id, done) => {
     });
 });
 
-// strategy
+// strategy for signup
 passport.use('local.signup', new LocalStrategy(
     {
         // konfigurasi strategi
@@ -56,6 +56,50 @@ passport.use('local.signup', new LocalStrategy(
 
                 return done(null, newUser);
             })
+        });
+    }
+));
+
+// strategy for signin
+passport.use('local.signin', new LocalStrategy(
+    {
+        // konfigurasi strategi
+        usernameField: 'email',
+        passwordField: 'password',
+        passReqToCallback: true
+    },
+    (req, email, password, done) => {
+        // validasi
+        req.checkBody('email', 'Invalid email').notEmpty().isEmail();
+        req.checkBody('password', 'Invalid password').notEmpty();
+        var errors = req.validationErrors();
+        if (errors) {
+            var messages = [];
+            errors.forEach((error) => {
+                messages.push(error.msg);
+            });
+            return done(null, false, req.flash('error', messages));
+        }
+
+        // mencari apakah data yang diinputkan sudah ada
+        User.findOne({'email': email}, (err, user) => {
+            if (err) {
+                // jika error
+                return done(err);
+            }
+            if (!user) {
+                // jika user tidak ditemukan dalam database
+                return done(null, false, {message: 'No user found.'});
+            }
+            if (!user.validPassword(password)) {
+                // jika password tidak cocok
+                return done(null, false, {message: 'Wrong password.'});
+            }
+
+            // jika email dan password cocok
+            // signin berhasil
+            return done(null, user);
+            
         });
     }
 ));

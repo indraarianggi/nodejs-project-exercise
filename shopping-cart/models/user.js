@@ -14,7 +14,7 @@ userSchema.methods.encryptPassword = (password) => {
 };
 
 // object method => untuk men-compare antara password yang tersimpan dengan password yang diinput
-userSchema.methods.validPassword = (password) => {
+userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
 

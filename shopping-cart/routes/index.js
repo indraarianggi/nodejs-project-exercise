@@ -26,8 +26,9 @@ router.get('/user/signup', function(req, res, next) {
 });
 
 router.post('/user/signup', passport.authenticate(
-  'local.signup',
+  'local.signup', // nama strategi yang didefinisikan dalam passport.js
   {
+    // konfigurasi
     successRedirect: '/user/profile',
     failureRedirect: '/user/signup',
     failureFlash: true
@@ -36,6 +37,21 @@ router.post('/user/signup', passport.authenticate(
 
 router.get('/user/profile', function(req, res, next) {
   res.render('user/profile');
-})
+});
+
+router.get('/user/signin', function(req, res, next) {
+  var messages = req.flash('error');
+  res.render('user/signin', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
+});
+
+router.post('/user/signin', passport.authenticate(
+  'local.signin', // nama strategi yang didefinisikan dalam passport.js
+  {
+    // konfigurasi
+    successRedirect: '/user/profile',
+    failureRedirect: '/user/signin',
+    failureFlash: true
+  }
+));
 
 module.exports = router;
