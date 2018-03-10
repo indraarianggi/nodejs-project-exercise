@@ -1,4 +1,6 @@
 var express = require('express');
+var Cart = require('../models/cart');
+
 var router = express.Router();
 
 var Product = require('../models/product');
@@ -13,6 +15,25 @@ router.get('/', function(req, res, next) {
       productChunks.push(data.slice(i, i+chunkSize));
     }
     res.render('shop/index', { title: 'Shopping Cart', products: productChunks });
+  });
+});
+
+router.get('/add-to-cart/:id', function(req, res, next) {
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  Product.findById(productId, (err, product) => {
+    if (err) { 
+      console.log(err);
+      return res.redirect('/user/signin'); 
+    }
+    
+    cart.add(product, product.id);
+    req.session.cart = cart;
+
+    console.log(req.session.cart);
+
+    res.redirect('/');
   });
 });
 
