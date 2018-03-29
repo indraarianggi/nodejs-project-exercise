@@ -11,6 +11,7 @@ var router = express.Router();
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
+// Register Endpoint
 router.post('/register', function(req, res) {
     // encrypt the password
     var hashedPassword = bcrypt.hashSync(req.body.password, 8);
@@ -57,6 +58,37 @@ router.get('/me', function(req, res) {
         })
     });
 });
+
+
+// Login Endpoint
+router.post('/login', function(req, res) {
+    User.findOne({ email: req.body.email }, function(err, user) {
+        if (err) return res.status(500).send("Error on the server.");
+
+        if (!user) return res.status(404).send("No user found.");
+
+        // password validation (valid password is 'veryverystrong')
+        var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+
+        if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
+
+        // password valid => create a token
+        var token = jwt.sign(
+            { id: user._id },
+            config.secret,
+            { expiresIn: 86400 } // 24 hours
+        );
+
+        res.status(200).send({ auth: true, token: token });
+
+    });
+});
+
+// Logout Endpoint => nullify the token
+router.get('/logout', function(req, res) {
+    res.status(200).send({ auth: false, token: null });
+});
+
 
 
 module.exports = router;
