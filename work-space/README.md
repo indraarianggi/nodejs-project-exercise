@@ -1,0 +1,1 @@
+Personal project exercise, inspired by [Code Margonda Website](https://codemargonda.com/).
