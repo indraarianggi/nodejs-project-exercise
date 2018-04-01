@@ -1,0 +1,119 @@
+.main-color {
+    background-color: #FF8F00;
+    color: white
+}
+
+body {
+    background-color: #FF8F00;
+    overflow-x: hidden;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.navbar {
+    box-shadow: 0px 0px 2px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.navbar-default {
+    background-color: #FF8F00;
+    border-color: white;
+  }
+  .navbar-default .navbar-brand {
+    color: white;
+  }
+  .navbar-default .navbar-brand:hover,
+  .navbar-default .navbar-brand:focus {
+    color: white;
+    background-color: transparent;
+  }
+  .navbar-default .navbar-text {
+    color: white;
+  }
+  .navbar-default .navbar-nav > li > a {
+    color: white;
+  }
+  .navbar-default .navbar-nav > li > a:hover,
+  .navbar-default .navbar-nav > li > a:focus {
+    color: white;
+    background-color: transparent;
+  }
+  .navbar-default .navbar-nav > .active > a,
+  .navbar-default .navbar-nav > .active > a:hover,
+  .navbar-default .navbar-nav > .active > a:focus {
+    color: white;
+    background-color: white;
+  }
+  .navbar-default .navbar-nav > .disabled > a,
+  .navbar-default .navbar-nav > .disabled > a:hover,
+  .navbar-default .navbar-nav > .disabled > a:focus {
+    color: white;
+    background-color: transparent;
+  }
+  .navbar-default .navbar-toggle {
+    /* border-color: white; */
+    border: none;
+  }
+  .navbar-default .navbar-toggle:hover,
+  .navbar-default .navbar-toggle:focus {
+    /* background-color: white; */
+    background: transparent;
+  }
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: white;
+  }
+  .navbar-default .navbar-collapse,
+  .navbar-default .navbar-form {
+    border-color: transparent;
+  }
+  .navbar-default .navbar-nav > .open > a,
+  .navbar-default .navbar-nav > .open > a:hover,
+  .navbar-default .navbar-nav > .open > a:focus {
+    color: white;
+    background-color: white;
+  }
+  @media (max-width: 767px) {
+    .navbar {
+        font-size: 14px;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+      color: white;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+      color: white;
+      background-color: transparent;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+      color: white;
+      background-color: white;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
+    .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+      color: white;
+      background-color: transparent;
+    }
+  }
+  .navbar-default .navbar-link {
+    color: white;
+  }
+  .navbar-default .navbar-link:hover {
+    color: white;
+  }
+  .navbar-default .btn-link {
+    color: white;
+  }
+  .navbar-default .btn-link:hover,
+  .navbar-default .btn-link:focus {
+    color: white;
+  }
+  .navbar-default .btn-link[disabled]:hover,
+  fieldset[disabled] .navbar-default .btn-link:hover,
+  .navbar-default .btn-link[disabled]:focus,
+  fieldset[disabled] .navbar-default .btn-link:focus {
+    color: white;
+  }
