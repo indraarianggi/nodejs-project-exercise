@@ -3,6 +3,22 @@ extends ../layouts/layout
 block content
     main#landing-page
         .row
-            .col-xl-12.col-md-12.col-sm-12
+            .col-lg-12.col-md-12.col-xs-12
                 include ../fragment/navigation
-                    
+                main
+                    section.landing-header.main-color
+                        .container
+                            .row
+                                .col-lg-6.col-md-6.col-xs-6
+                                    .main-title
+                                        h2 WorkSpace
+                                        h3 Coworking & Event Space
+                                .col-lg-6.col-md-6.col-xs-6
+                                    .main-image
+                                        img(src="#", alt="main image")
+                                        
+                    section#about
+                        .container
+                            .row
+                                .col-xl-12.col-md-12.col-sm-12
+

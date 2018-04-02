@@ -1,14 +1,19 @@
+/* ===== GENERAL ===== */
+/* =================== */
 .main-color {
     background-color: #FF8F00;
     color: white
 }
 
 body {
-    background-color: #FF8F00;
+    /* background-color: #FF8F00; */
     overflow-x: hidden;
     font-family: Helvetica, Arial, sans-serif;
 }
+/* /end general */
 
+/* ===== NAVIGATION ===== */
+/* ====================== */
 .navbar {
     box-shadow: 0px 0px 2px;
     border: none;
@@ -117,3 +122,28 @@ body {
   fieldset[disabled] .navbar-default .btn-link:focus {
     color: white;
   }
+/* /end navigation */
+
+/* ===== LANDING-PAGE MAIN ===== */
+/* ============================= */
+/* Landing-page Header */
+.landing-header {
+  height: 100vh;
+}
+
+.landing-header .row {
+  margin: 7rem 0;
+}
+
+/* .main-title {
+  
+} */
+
+.main-image {
+  border: 1px solid black;
+}
+
+/* /end landing-page main */
+#about {
+  height: 100vh;
+}
