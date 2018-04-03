@@ -43,7 +43,7 @@ var eventSchema = new Schema({
         type: String
     },
     event_status: {
-        type: Boolean,
+        type: String,
         required: true
     }
 });

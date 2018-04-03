@@ -14,5 +14,5 @@ var spaceSchema = new Schema({
     }
 });
 
-// export database model based on userSchema
-module.exports = mongoose.model('space', spaceSchema);
+// export database model based on spaceSchema
+module.exports = mongoose.model('Space', spaceSchema);
