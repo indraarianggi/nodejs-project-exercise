@@ -45,7 +45,27 @@ var eventSchema = new Schema({
     event_status: {
         type: String,
         required: true
-    }
+    },
+    event_participants: [
+        {
+            user_id: {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+                required: true
+            },
+            payment_status: {
+                type: String,
+                required: true
+            },
+            patment_deadline: {
+                type: Date,
+                required: true
+            },
+            confirm_time: {
+                type: Date
+            }
+        }
+    ]
 });
 
 
