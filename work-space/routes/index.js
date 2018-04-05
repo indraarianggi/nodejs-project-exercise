@@ -1,9 +1,9 @@
 // import dependencies
-var express = require('express');
+const express = require('express');
 
 
 // instance dari express Router
-var router = express.Router();
+const router = express.Router();
 
 // router
 router.get('/', function(req, res, next) {

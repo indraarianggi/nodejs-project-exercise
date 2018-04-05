@@ -1,9 +1,9 @@
 // import dependencies
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // create a database schema
-var Schema = mongoose.Schema;
-var usedspaceSchema = new Schema({
+const Schema = mongoose.Schema;
+const usedspaceSchema = new Schema({
     event_id: {
         type: Schema.Types.ObjectId,
         // ref: 'Event', and Booking (???)

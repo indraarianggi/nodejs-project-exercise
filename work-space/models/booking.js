@@ -1,9 +1,9 @@
 // import dependencies
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // create a database schema
-var Schema = mongoose.Schema;
-var bookingSchema = new Schema({
+const Schema = mongoose.Schema;
+const bookingSchema = new Schema({
     booking_id: {
         type: String,
         required: true

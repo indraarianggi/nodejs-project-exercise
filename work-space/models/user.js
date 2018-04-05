@@ -1,10 +1,10 @@
 // import dependencies
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 // create a database schema
-var Schema = mongoose.Schema;
-var userSchema = new Schema({
+const Schema = mongoose.Schema;
+const userSchema = new Schema({
     name: {
         type: String, 
         required: true

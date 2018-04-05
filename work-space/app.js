@@ -1,12 +1,12 @@
 // import dependencies
-var express = require('express');
-var path = require('path');
+const express = require('express');
+const path = require('path');
 
-var routerIndex = require('./routes/index');
-var routerUser = require('./routes/user');
+const routerIndex = require('./routes/index');
+const routerUser = require('./routes/user');
 
 // init app
-var app = express();
+const app = express();
 
 // set port
 var port = process.env.PORT || 3000;
