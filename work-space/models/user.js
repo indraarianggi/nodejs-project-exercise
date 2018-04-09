@@ -39,6 +39,10 @@ const userSchema = new Schema({
     },
     profile_pict: {
         type: String
+    },
+    registered_date: {
+        type: Date,
+        required: true
     }
 });
 
