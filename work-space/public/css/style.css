@@ -124,26 +124,145 @@ body {
   }
 /* /end navigation */
 
+/* ======= FOOTER ======= */
+/* ====================== */
+#footer {
+  margin-bottom: 0;
+  padding: 5vh;
+  text-align: center;
+  border-radius: 0;
+  box-shadow: none
+}
+/* /end footer */
+
 /* ===== LANDING-PAGE MAIN ===== */
 /* ============================= */
 /* Landing-page Header */
 .landing-header {
+  /* position: relative; */
   height: 100vh;
 }
 
 .landing-header .row {
-  margin: 7rem 0;
+  vertical-align: middle;
+  margin: 10rem 0;
 }
 
-/* .main-title {
-  
-} */
-
-.main-image {
-  border: 1px solid black;
+.landing-header .main-title {
+  text-align: center;
 }
+
+.main-title {
+  font-family: Helvetica, Arial, sans-serif;
+  /* line-height: 40px !important; */
+}
+
+.main-title h1 {
+  font-size: 3.5vw;
+  font-weight: bold;
+}
+
+.main-title h4 {
+  font-size: 2vw;
+  font-weight: bold;
+}
+
+.btn-action {
+  color: #fff;
+  background-color: #FF8F00;
+  /* border-color: #2e6da4; */
+  box-shadow: black 0px 1px 3px;
+}
+.btn-action:focus,
+.btn-action.focus {
+  color: #fff;
+  background-color: #FF6F00;
+  /* border-color: #122b40; */
+}
+.btn-action:hover {
+  color: #fff;
+  background-color: #FF6F00;
+  transition-duration: 1s;
+  /* border-color: #204d74; */
+}
+.btn-action:active,
+.btn-action.active,
+.open > .dropdown-toggle.btn-action {
+  color: #fff;
+  background-color: #FF6F00;
+  /* border-color: #204d74; */
+}
+.btn-action:active:hover,
+.btn-action.active:hover,
+.open > .dropdown-toggle.btn-action:hover,
+.btn-action:active:focus,
+.btn-action.active:focus,
+.open > .dropdown-toggle.btn-action:focus,
+.btn-action:active.focus,
+.btn-action.active.focus,
+.open > .dropdown-toggle.btn-action.focus {
+  color: #fff;
+  background-color: #FF6F00;
+  /* border-color: #122b40; */
+}
+.btn-action:active,
+.btn-action.active,
+.open > .dropdown-toggle.btn-action {
+  background-image: none;
+}
+.btn-action.disabled:hover,
+.btn-action[disabled]:hover,
+fieldset[disabled] .btn-action:hover,
+.btn-action.disabled:focus,
+.btn-action[disabled]:focus,
+fieldset[disabled] .btn-action:focus,
+.btn-action.disabled.focus,
+.btn-action[disabled].focus,
+fieldset[disabled] .btn-action.focus {
+  background-color: #FF6F00;
+  /* border-color: #2e6da4; */
+}
+
+.main-image img {
+  display: block;
+  margin: auto;
+  width: 60%;
+}
+
 
 /* /end landing-page main */
-#about {
-  height: 100vh;
+#about, #partner, #contact-us {
+  text-align: center;
+  padding: 50px 0px;
 }
+
+.subtitle {
+  font-size: 3.5vw;
+  font-weight: bold;
+}
+
+#about p, #partner p, #contact-us p {
+  font-size: 2vw;
+  /* font-weight: bold; */
+}
+
+#partner {
+  min-height: 100vh;
+}
+
+/* #contact-us {
+  min-height: 100vh;
+} */
+
+/* /end of lending-page */
+
+/* ======= SIGNUP | SIGNIN ======= */
+/* =============================== */
+#signup, #signin {
+  margin-top: 5%;
+}
+
+#signup p, #signin p {
+  text-align: center
+}
+/* /end signup | signin */

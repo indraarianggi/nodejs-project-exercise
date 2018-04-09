@@ -1,24 +1,46 @@
 extends ../layouts/layout
 
 block content
+    nav
+        include ../fragment/navigation
     main#landing-page
-        .row
-            .col-lg-12.col-md-12.col-xs-12
-                include ../fragment/navigation
-                main
-                    section.landing-header.main-color
-                        .container
-                            .row
-                                .col-lg-6.col-md-6.col-xs-6
-                                    .main-title
-                                        h2 WorkSpace
-                                        h3 Coworking & Event Space
-                                .col-lg-6.col-md-6.col-xs-6
-                                    .main-image
-                                        img(src="#", alt="main image")
-                                        
-                    section#about
-                        .container
-                            .row
-                                .col-xl-12.col-md-12.col-sm-12
-
+        section.landing-header.main-color
+            .container
+                .row
+                    .col-lg-6.col-md-6.col-xs-12
+                        .main-title
+                            h1 WorkSpace
+                            h4 Coworking & Event Space
+                            a.btn.btn-action(href="/signup")
+                                i.fa.fa-users(aria-hidden="true")    Gabung Komunitas WorkSpace
+                    .col-lg-6.col-md-6.col-xs-12
+                        .main-image
+                            img(src="/images/image-main.jpg", alt="main image")
+                            
+        section#about
+            .container
+                .row
+                    .col-xl-12.col-md-12.col-sm-12
+                        h1.subtitle Sewa Ruangan
+                        p WorkSpace mendukung komunitas dengan menyediakan ruangan sebagai tempat diskusi, berkumpul dan kegiatan komunitas lainnya.
+                        a.btn.btn-action(href="#")
+                            i.fa.fa-bookmark(aria-hidden="true")    Sewa Ruangan
+        
+        section#partner.main-color
+            .container
+                .row
+                    .col-xl-12.col-md-12.col-sm-12
+                        h1.subtitle Partner Kami
+        
+        section#contact-us
+            .container
+                .row
+                    .col-xl-12.col-md-12.col-sm-12
+                        h1.subtitle Hubungi Kami
+                        p Anda memiliki pertanyaan atau kebutuhan seputar WorkSpace atau sewa ruangan?
+                        a.btn.btn-action(hef="#")
+                            i.fa.fa-paper-plane(aria-hidden="true")    Hubungi Kami
+        
+    footer
+        include ../fragment/footer
+        
