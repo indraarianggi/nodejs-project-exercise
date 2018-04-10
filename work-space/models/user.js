@@ -11,7 +11,7 @@ const userSchema = new Schema({
     },
     birth_date: {
         type: Date,
-        required: true
+        // required: true
     },
     gender: {
         type: String,
@@ -27,7 +27,7 @@ const userSchema = new Schema({
     },
     job: {
         type: String,
-        required: true
+        // required: true
     },
     email: {
         type: String, 

@@ -10,13 +10,7 @@ router.get('/', function(req, res, next) {
     res.render('pages/landing-page');
 });
 
-router.get('/signup', function(req, res, next) {
-    res.render('pages/signup');
-});
 
-router.get('/signin', function(req, res, next) {
-    res.render('pages/signin');
-});
 
 
 module.exports = router;

@@ -6,6 +6,13 @@ block content
             .row
                 .col-md-4.col-sm-4.col-md-offset-4.col-sm-offset-4
                     h1 Sign In
+                    
+                    if (hasErrors)
+                        .alert.alert-danger
+                            each message in messages
+                                span.error
+                                    i.fa.fa-times(aria-hidden="true")= message
+
                     .panel.panel-default
                         .panel-body
                             form(action="#", method="post")
@@ -14,9 +21,9 @@ block content
                                     input(type="text", name="email", id="email", class="form-control", required)
                                 .form-group
                                     label(for="password") Password
-                                    input(type="text", name="password", id="password", class="form-control", required)
+                                    input(type="password", name="password", id="password", class="form-control", required)
                                 input(type="submit", value="Sign In", class="btn btn-block btn-action")
                     .panel.panel-default
                         .panel-body
-                            p Belum memiliki? 
-                                a(href="/signup") Sign Up
+                            p Belum memiliki akun? 
+                                a(href="/user/signup") Sign Up

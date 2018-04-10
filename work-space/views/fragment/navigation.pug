@@ -22,10 +22,20 @@ nav.navbar.navbar-default.navbar-fixed-top
 				li
 					a(href="#") Sewa Ruang					
 			ul.nav.navbar-nav.navbar-right
-				li
-					a(href="/signup") Daftar
-				li
-					a(href="/signin") Masuk
+				if login
+					li.dropdown
+						a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") User Management
+							span.caret
+						ul.dropdown-menu
+							li
+								a(href="#") User Dashboard
+							li
+								a(href="/user/signout") Sign Out
+				else
+					li
+						a(href="/user/signup") Daftar
+					li
+						a(href="/user/signin") Masuk					
 		//- /.navbar-collapse
 	//- /.container-fluid
 //- /.navbar

@@ -265,4 +265,10 @@ fieldset[disabled] .btn-action.focus {
 #signup p, #signin p {
   text-align: center
 }
+
+span.error {
+  display: block;
+  margin-bottom: 5px
+}
+
 /* /end signup | signin */
