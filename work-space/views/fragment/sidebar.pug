@@ -1,0 +1,34 @@
+//- Sidebar
+nav#sidebar
+    //- Sidebar Header
+    .sidebar-header
+        a(href="/")
+            h3 WorkSpace
+    
+    //- Sidebar Links
+    ul.list-unstyled.components
+        li.active
+            a(href="#homeSubmenu" data-toggle="collapse" aria-expanded="false") Home
+            ul#homeSubmenu.collapse.list-unstyled
+                li
+                    a(href="#") Home 1
+                li
+                    a(href="#") Home 2
+                li
+                    a(href="#") Home 3
+        li
+            a(href="#") About
+        li
+            a(href="#pageSubmenu" data-toggle="collapse" aria-expanded="false") Pages
+            ul#pageSubmenu.collapse.list-unstyled
+                li
+                    a(href="#") Page 1
+                li
+                    a(href="#") Page 2
+                li
+                    a(href="#") Page 3
+        li
+            a(href="#") Portofolio
+        li
+            a(href="#") Contact
+//- /end of nav#sidebar

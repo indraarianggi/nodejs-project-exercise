@@ -6,6 +6,10 @@ const router = express.Router();
 
 
 // router
+router.get('/profile', isLoggedIn, function(req, res, next) {
+    res.render('user/dashboard');
+})
+
 router.get('/signout', isLoggedIn, function(req, res, next) {
     req.logout();
     res.redirect('/');
@@ -38,7 +42,7 @@ router.post(
         // } else {
         //     res.redirect('/'); // nanti diganti /user/profile
         // }
-        res.redirect('/');
+        res.redirect('/user/profile');
     }
 );
 
@@ -65,7 +69,7 @@ router.post(
         // } else {
         //     res.redirect('/'); // nanti diganti /user/profile
         // }
-        res.redirect('/');
+        res.redirect('/user/profile');
     }
 );
 
