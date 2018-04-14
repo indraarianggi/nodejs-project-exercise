@@ -9,7 +9,8 @@ const bookingSchema = new Schema({
         required: true
     },
     organization: {
-        type: String
+        type: String,
+        require: true
     },
     name: { // penanggung jawab
         type: String,

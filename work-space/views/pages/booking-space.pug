@@ -1,0 +1,55 @@
+extends ../layouts/layout
+
+block content
+    nav
+        include ../fragment/navigation
+    main#space-page
+        section.landing-header.main-color
+            .container
+                .row
+                    //- still empty
+        
+        section#booking-form
+            .container
+                h1.subtitle Sewa Ruangan
+                p WorkSpace mendukung komunitas dengan menyediakan ruangan sebagai tempat diskusi, berkumpul dan kegiatan komunitas lainnya.
+
+                .row
+                    .col-md-8.col-sm-8.col-md-offset-2.col-sm-offset-2
+                        .panel.panel-default
+                            .panel-body
+                                form(action="#", method="post")
+                                    .form-group
+                                        label(for="organization") Nama komunitas / organisasi
+                                        input(type="text", name="organization", id="organization", class="form-control", required)
+                                    .form-group
+                                        label(for="name") Penanggung jawab
+                                        input(type="text", name="name", id="name", class="form-control", required)
+                                    .form-group
+                                        label(for="email") Email
+                                        input(type="text", name="email", id="email", class="form-control", required)
+                                    .form-group
+                                        label(for="phone_number") Nomor Telepon
+                                        input(type="text", name="phone_number", id="phone_number", class="form-control", required)
+                                    .form-group
+                                        label(for="date") Tanggal
+                                        input(type="text", name="date", id="date", class="form-control", required)
+                                    .form-group
+                                        label(for="start") Jam mulai
+                                        input(type="text", name="start", id="start", class="form-control", required)
+                                    .form-group
+                                        label(for="end") Jam selesai
+                                        input(type="text", name="end", id="end", class="form-control")
+                                    .form-group
+                                        label(for="space") Pilih Ruangan
+                                        input(type="text", name="space", id="space", class="form-control", required)
+                                    .form-group
+                                        label(for="event_name") Nama kegiatan
+                                        input(type="text", name="event_name", id="event_name", class="form-control")
+                                    .form-group
+                                        label(for="event_detail") Detail kegiatan
+                                        input(type="text", name="event_detail", id="event_detail", class="form-control")
+                                    input(type="submit", value="Sewa Ruangan", class="btn btn-block btn-action")
+
+    footer
+        include ../fragment/footer
