@@ -11,6 +11,7 @@ const validator = require('express-validator');
 const logger = require('morgan');
 
 const routerIndex = require('./routes/index');
+const routerAdmin = require('./routes/admin');
 const routerUser = require('./routes/user');
 
 // init app
@@ -54,6 +55,7 @@ app.use((req, res, next) => {
 
 // router
 app.use('/', routerIndex);
+app.use('/admin', routerAdmin);
 app.use('/user', routerUser);
 
 // catch 404 and forward to error handler

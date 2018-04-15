@@ -47,7 +47,7 @@ router.post(
 );
 
 router.get('/signin', function(req, res, next) {
-    var messages = req.flash('error');
+    let messages = req.flash('error');
     res.render('pages/signin', {messages: messages, hasErrors: messages.length > 0});
 });
 

@@ -1,6 +1,7 @@
 // import dependencies
 const passport = require('passport');
 const User = require('../models/user');
+const Admin = require('../models/admin');
 const LocalStrategy = require('passport-local').Strategy;
 
 // save session
@@ -104,7 +105,7 @@ passport.use('local.signin', new LocalStrategy(
             if (!user) return done(null, false, {message: `User dengan email ${email} tidak ditemukan.`});
 
             // jika password tidak sesuai
-            if (!user.validPassword(password)) return done(null, false, {messages: 'Email dan password tidak sesuai.'});
+            if (!user.validPassword(password)) return done(null, false, {message: 'Email dan password tidak sesuai.'});
 
             // email dan password sesuai
             // signin berhasil
@@ -112,3 +113,43 @@ passport.use('local.signin', new LocalStrategy(
         });
     }
 ));
+
+
+// strategy for admin signin
+passport.use('admin.local.signin', new LocalStrategy(
+    {
+        // konfigurasi strategi
+        usernameField: 'email',
+        passwordField: 'password',
+        passReqToCallback: true
+    },
+    (req, email, password, done) => {
+        // validasi
+        req.checkBody('email', 'Email tidak boleh kosong dan dalam format yang benar').notEmpty().isEmail();
+        req.checkBody('password', 'Password tidak boleh kosong').notEmpty();
+        let errors = req.validationErrors();
+        if (errors) {
+            var messages = [];
+            errors.forEach((error) => {
+                messages.push(error.msg);
+            });
+            return done(null, false, req.flash('error', messages));
+        }
+
+        // mencari data user
+        Admin.findOne({'email': email}, (err, admin) => {
+            // jika error
+            if (err) return done(err);
+
+            // jika user tidak ditemukan dalam database
+            if (!admin) return done(null, false, {message: `Admin dengan email ${email} tidak ditemukan.`});
+
+            // jika password tidak sesuai
+            if (!admin.validPassword(password)) return done(null, false, {message: 'Email dan password tidak sesuai.'});
+
+            // email dan password sesuai
+            // signin berhasil
+            return done(null, admin);
+        });
+    }
+))
