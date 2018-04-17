@@ -5,9 +5,18 @@ const passport = require('passport');
 const router = express.Router();
 
 // router
+router.get('/dashboard', isLoggedIn, function(req, res, next) {
+    res.render('admin/dashboard');
+});
+
+router.get('/signout', isLoggedIn, function(req, res, next) {
+    req.logout();
+    res.redirect('/');
+});
+
 router.get('/signin', function(req, res, next) {
     let messages = req.flash('error');
-    res.render('admin/signin', {messages: messages, hasErrorrs: messages.length > 0});
+    res.render('admin/signin', {messages: messages, hasErrors: messages.length > 0});
 });
 
 router.post(
@@ -21,7 +30,7 @@ router.post(
         }
     ),
     function(req, res, next) {
-        res.redirect('/'); // /admin/dashboard
+        res.redirect('/admin/dashboard');
     }
 );
 

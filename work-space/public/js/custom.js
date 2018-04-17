@@ -1,5 +1,8 @@
 $(document).ready(function () {
     
+    /**
+     *  Dashboard
+     */
     $("#sidebar").mCustomScrollbar({
         theme: "minimal"
     });
@@ -12,6 +15,14 @@ $(document).ready(function () {
         // and also adjust aria-expanded attributes we use for the open/closed arrows
         // in our CSS
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+
+
+    /**
+     *  Signup
+     */
+    $('.input-group.date').datepicker({
+        autoclose: true
     });
     
 });

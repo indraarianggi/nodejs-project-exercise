@@ -21,10 +21,20 @@ block content
                                     input(type="text", name="name", id="name", class="form-control", required)
                                 .form-group
                                     label(for="birth_date") Tanggal Lahir
-                                    input(type="text", name="birth_date", id="birth_date", class="form-control")
+                                    .input-group.date(data-date="", data-date-format="dd-mm-yyyy")
+                                        input(type="text", name="birth_date", id="birth_date", class="form-control", readonly="readonly")
+                                        span.input-group-addon
+                                            i.glyphicon.glyphicon-calendar
                                 .form-group
                                     label(for="gender") Jenis Kelamin
-                                    input(type="text", name="gender", id="gender", class="form-control", required)
+                                    #gender
+                                        label.radio-inline
+                                            input(type="radio" name="gender" value="Laki-laki") 
+                                            span Laki-laki
+                                        label.radio-inline
+                                            input(type="radio" name="gender" value="Perempuan")
+                                            span Perempuan
+                                        //- input(type="text", name="gender", id="gender", class="form-control", required)
                                 .form-group
                                     label(for="address") Alamat
                                     input(type="text", name="address", id="address", class="form-control", required)
@@ -36,7 +46,7 @@ block content
                                     input(type="text", name="job", id="job", class="form-control")
                                 .form-group
                                     label(for="email") Email
-                                    input(type="text", name="email", id="email", class="form-control", required)
+                                    input(type="email", name="email", id="email", class="form-control", required)
                                 .form-group
                                     label(for="password") Password
                                     input(type="password", name="password", id="password", class="form-control", required)
