@@ -1,0 +1,51 @@
+{{!-- USER SIGNUP --}}
+<div id="signup" class="row">
+    <div class="col s12 m6 offset-m3">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-title center">
+                    Sign Up
+                </div>
+                <form action="/user/signup" method="post">
+                    <div class="row">
+                        <div class="input-field">
+                            <input type="text" name="name">
+                            <label for="name">Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field">
+                            <input type="text" name="email">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field">
+                            <input type="password" name="password">
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field">
+                            <input type="password" name="confpassword">
+                            <label for="confpassword">Confirm Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="Sign Up" class="btn btn-form yellow accent-4">
+                    </div>
+                    <div class="row">
+                        <a href="/auth/google" class="btn btn-form red darken1">
+                            <i class="fab fa-google"></i> Continue with Google
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <span class="center">
+            <p>
+                Have an account? <a href="/user/login">Log In</a>
+            </p>
+        </span>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+{{!-- USER LOGIN --}}
+<div id="login" class="row">
+    <div class="col s12 m6 offset-m3">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-title center">
+                    Log In
+                </div>
+                <form action="/user/login" method="post">
+                    <div class="row">
+                        <div class="input-field">
+                            <input type="text" name="email">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field">
+                            <input type="password" name="password">
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="Log In" class="btn btn-form  yellow accent-4">
+                    </div>
+                    <div class="row">
+                        <a href="/auth/google" class="btn btn-form red darken1">
+                            <i class="fab fa-google"></i> Continue with Google
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <span class="center">
+            <p>
+                Don't have an account? <a href="/user/signup">Sign Up</a>
+            </p>
+        </span>
+    </div>
+</div>
