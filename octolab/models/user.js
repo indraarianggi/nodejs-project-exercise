@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const Schema = mongoose.Schema;
 
@@ -17,8 +18,7 @@ const UserSchema = new Schema({
         required: true
     },
     password: {
-        type    : String,
-        required: true
+        type    : String
     },
     telephone: {
         type: String
@@ -41,5 +41,27 @@ const UserSchema = new Schema({
         default : Date.now
     }
 });
+
+// UserSchema.methods.encryptPassword = (password) => {
+//     bcrypt.genSalt(0, (err, salt) => {
+//         bcrypt.hash(password, salt, (err, hash) => {
+//             if(err) {
+//                 console.log(err);
+//             } else {
+//                 return hash;
+//             }
+//         });
+//     });
+// }
+
+UserSchema.methods.validatePassword = (inputPass) => {
+    bcrypt.compare(inputPass, this.password, (err, isMatch) => {
+        if(err) {
+            console.log(err);
+        } else {
+            return isMatch;
+        }
+    });
+}
 
 module.exports = mongoose.model('User', UserSchema);
