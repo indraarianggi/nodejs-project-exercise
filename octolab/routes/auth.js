@@ -9,7 +9,7 @@ router.get('/google/callback',
     passport.authenticate('google', { failureRedirect: '/' }),
     (req, res) => {
         // Successful authentication, redirect dashboard.
-        res.redirect('/');
+        res.redirect('/user/profile');
     }
 );
 
@@ -23,7 +23,7 @@ router.get('/signup', (req, res) => {
 
 router.post('/login',
     passport.authenticate('local.login', {
-        successRedirect: '/',
+        successRedirect: '/user/profile',
         failureRedirect: '/auth/login',
         failureFlash: true
     })
@@ -31,7 +31,7 @@ router.post('/login',
 
 router.post('/signup', 
     passport.authenticate('local.signup', {
-        successRedirect: '/',
+        successRedirect: '/user/profile',
         failureRedirect: '/auth/signup',
         failureFlash: true
     })

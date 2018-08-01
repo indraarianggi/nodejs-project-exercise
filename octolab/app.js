@@ -15,6 +15,7 @@ require('./config/passport');
 // Load Routes
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
+const userRouter = require('./routes/user');
 
 // Map global promises
 mongoose.Promise = global.Promise;
@@ -66,6 +67,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Use Routes
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/user', userRouter);
 
 const port = process.env.PORT || 5000;
 
