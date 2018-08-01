@@ -14,11 +14,11 @@ router.get('/google/callback',
 );
 
 router.get('/login', (req, res) => {
-    res.render('user/login', {message: req.flash('error')});
+    res.render('user/login'); //, {message: req.flash('error')}
 });
 
 router.get('/signup', (req, res) => {
-    res.render('user/signup');
+    res.render('user/signup'); //, {message: req.flass('error')}
 });
 
 router.post('/login',

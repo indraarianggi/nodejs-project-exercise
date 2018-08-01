@@ -94,7 +94,7 @@ passport.use('local.login', new LocalStrategy({
                 return done(null, false, {message: `User with email ${email} not found.`});
             }
 
-            if(!user.password) {
+            if(user.googleID) {
                 return done(null, false, {message: `User with email ${email} registered using Google account, please continue with Google.`});
             }
 
