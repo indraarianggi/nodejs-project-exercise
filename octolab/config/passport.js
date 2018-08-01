@@ -2,7 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const keys = require('./keys');
-const {encryptPassword} = require('../helpers/helper');
+const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 
 // Google Strategy
@@ -62,12 +62,22 @@ passport.use('local.signup', new LocalStrategy({
             // create new user
             const newUser = new User({
                 name        : req.body.name,
-                email       : email,
-                password    : encryptPassword(password)
+                email       : email
             });
-            new User(newUser)
-                .save()
-                .the(user => done(null, user));
+            
+            bcrypt.genSalt(0, (err, salt) => {
+                bcrypt.hash(password, salt, (err, hash) => {
+                    if(err) {
+                        console.log(err);
+                    } else {
+                        newUser.password = hash
+
+                        new User(newUser)
+                            .save()
+                            .then(user => done(null, user));
+                    }
+                });
+            });
         });
 }));
 
@@ -84,14 +94,23 @@ passport.use('local.login', new LocalStrategy({
                 return done(null, false, {message: `User with email ${email} not found.`});
             }
 
-            // User exist
-            if(!user.validatePassword(password)) {
-                // Password did not match
-                return done(null, false, {message: 'Password did not match.'});
+            if(!user.password) {
+                return done(null, false, {message: `User with email ${email} registered using Google account, please continue with Google.`});
             }
 
-            // User exist and password match
-            return done(null, user);
+            bcrypt.compare(password, user.password, (err, isMatch) => {
+                if(err) {
+                    console.log(err);
+                }
+
+                if(isMatch) {
+                    // User exist and password match
+                    return done(null, user);
+                } else {
+                    // Password did not match
+                    return done(null, false, {message: 'Password did not match.'});
+                }
+            });            
         });
 }));
 

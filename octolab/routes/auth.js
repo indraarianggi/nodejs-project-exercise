@@ -14,28 +14,28 @@ router.get('/google/callback',
 );
 
 router.get('/login', (req, res) => {
-    res.render('user/login');
+    res.render('user/login', {message: req.flash('error')});
 });
 
 router.get('/signup', (req, res) => {
     res.render('user/signup');
 });
 
-router.post('/login', (req, res, next) => {
+router.post('/login',
     passport.authenticate('local.login', {
         successRedirect: '/',
         failureRedirect: '/auth/login',
         failureFlash: true
-    })(req, res, next);
-});
+    })
+);
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', 
     passport.authenticate('local.signup', {
         successRedirect: '/',
         failureRedirect: '/auth/signup',
         failureFlash: true
-    })(req, res, next);
-});
+    })
+);
 
 router.get('/logout', (req, res) => {
     req.logout();
