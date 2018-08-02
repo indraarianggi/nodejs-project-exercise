@@ -62,7 +62,8 @@ passport.use('local.signup', new LocalStrategy({
             // create new user
             const newUser = new User({
                 name        : req.body.name,
-                email       : email
+                email       : email,
+                image       : '/images/user_default_image.png'
             });
             
             bcrypt.genSalt(0, (err, salt) => {

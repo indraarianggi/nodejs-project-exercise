@@ -1,1 +1,90 @@
-<h1>Dashboard > Profile Page</h1>
+{{!-- USER DASHBOARD > PROFILE PAGE --}}
+<div class="row">
+    <form action="/user/update" method="post">
+        <div class="col s12 m4">
+            <div class="row">
+                <div class="col s12 m12">
+                    <img id="user-image" src="{{user.image}}" alt="image profile" class="responsive-img img-profile">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col s12 m12 fileUpload btn btn-form grey">
+                    <span>Change Image</span>
+                    <input id="upload-user-img" type="file" name="image" class="upload" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m8">
+            <h4>Profile</h4>
+            <hr>
+            <div class="row">
+                <div class="input-field">
+                    <input type="text" name="name" value="{{user.name}}">
+                    <label for="name">Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <input type="text" name="email" value="{{user.email}}">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <input type="text" name="telephone" value="{{user.telephone}}">
+                    <label for="telephone">Telephone</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <input type="text" name="instagram" value="{{user.instagram}}">
+                    <label for="instagram">Instagram Account</label>
+                </div>
+            </div>
+            <h4>Address</h4>
+            <hr>
+            <div class="row">
+                <div class="input-field">
+                    <input type="text" name="address" value="{{user.address.address}}">
+                    <label for="address">Address</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="input-field">
+                        <input type="text" name="district" value="{{user.address.district}}">
+                        <label for="district">District</label>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <div class="input-field">
+                        <input type="text" name="province" value="{{user.address.province}}">
+                        <label for="province">Province</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="input-field">
+                        <input type="text" name="state" value="{{user.address.state}}">
+                        <label for="state">State</label>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <div class="input-field">
+                        <input type="text" name="postal_code" value="{{user.address.postal_code}}">
+                        <label for="postal_code">Postal Code</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row right">
+                <a href="/user/google" class="btn red darken1">
+                    Change Password
+                </a>
+                <input type="submit" value="Save" class="btn yellow accent-4">
+            </div>
+        </div>
+    </form>
+</div>

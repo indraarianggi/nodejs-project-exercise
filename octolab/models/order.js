@@ -4,6 +4,9 @@ const Schema = mongoose.Schema;
 
 // Create schema
 const OrderSchema = new Schema({
+    uniqueID: {
+        type    : String
+    },
     user: {
         type    : Schema.Types.ObjectId,
         required: true
@@ -24,8 +27,20 @@ const OrderSchema = new Schema({
         type    : Number
     },
     status: {
-        type    : String,
-        // enum    : []
+        type    : Number,
+        enum    : [0, 1, 2, 3]
+        /* Status
+            0   => Menunggu Film Sampai (film dikirim oleh user, OctoLab menunggu film sampai)
+            1   => Film Telah Diterima  (film sudah sampai ditangan OctoLab)
+            2   => Film Sedang Diproses (proses pencucian)
+            3   => Film Telah Dikirim   (film telah dikirim kembali ke user)
+        */
+    },
+    invoice1: {             // Invoice pengiriman oleh user
+        type    : String
+    },
+    invoice2: {             // Invoice pengiriman oleh OctoLab
+        type    : String
     },
     proofPayment: {
         type    : String
