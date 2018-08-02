@@ -14,7 +14,6 @@ require('./config/passport');
 
 // Load Routes
 const indexRouter = require('./routes/index');
-const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
 
 // Map global promises
@@ -56,7 +55,6 @@ app.use(passport.session());
 app.use((req, res, next) => {
     res.locals.user = req.user || null;
     // res.locals.success_msg = req.flash('success_msg');
-    // res.locals.error_msg = req.flash('error_msg');
     res.locals.error_msg = req.flash('error');
     next();
 });
@@ -66,7 +64,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Use Routes
 app.use('/', indexRouter);
-app.use('/auth', authRouter);
 app.use('/user', userRouter);
 
 const port = process.env.PORT || 5000;

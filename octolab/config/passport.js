@@ -9,10 +9,10 @@ const User = require('../models/user');
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
-    callbackURL: '/auth/google/callback'
+    callbackURL: '/user/google/callback'
 }, (accessToken, refreshToken, profile, done) => {
-    console.log(accessToken);
-    console.log(profile);
+    // console.log(accessToken);
+    // console.log(profile);
 
     // remove size from profile photo url
     const imageurl = profile.photos[0].value.substring(0, profile.photos[0].value.indexOf('?'));

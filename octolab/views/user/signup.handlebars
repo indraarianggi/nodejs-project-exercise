@@ -9,7 +9,7 @@
 
                 {{> _message}}
                 
-                <form action="/auth/signup" method="post">
+                <form action="/user/signup" method="post">
                     <div class="row">
                         <div class="input-field">
                             <input type="text" name="name" required>
@@ -38,7 +38,7 @@
                         <input type="submit" value="Sign Up" class="btn btn-form yellow accent-4">
                     </div>
                     <div class="row">
-                        <a href="/auth/google" class="btn btn-form red darken1">
+                        <a href="/user/google" class="btn btn-form red darken1">
                             <i class="fab fa-google"></i> Continue with Google
                         </a>
                     </div>
@@ -47,7 +47,7 @@
         </div>
         <span class="center">
             <p>
-                Have an account? <a href="/auth/login">Log In</a>
+                Have an account? <a href="/user/login">Log In</a>
             </p>
         </span>
     </div>
