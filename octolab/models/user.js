@@ -25,7 +25,7 @@ const UserSchema = new Schema({
     },
     address: {
         address : String,
-        district: String,
+        city: String,
         province: String,
         postal_code : String,
         state   : String

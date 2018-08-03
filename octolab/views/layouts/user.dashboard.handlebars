@@ -29,9 +29,13 @@
         $('.button-collapse').sideNav();
 
         // Change user image
-        /*$('#upload-user-img').change(function() {
-            $('#user-image').attr('src', this.value);
-        });*/
+        $('input#upload-user-img').on('change', function() {
+            //let image = $('input#upload-user-img').val()
+            //console.log(image);
+            //$('input#image-name').val(image);
+
+            $('#image-change').html('<div class="alert alert-success"><i class="fas fa-check-circle"></i> Image has ben selected, click Save button to save the changes</div>');
+        });
     </script>
 </body>
 </html>
