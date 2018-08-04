@@ -26,14 +26,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
     <script>
+        // Side menu
         $('.button-collapse').sideNav();
+
+        // Modal
+        $('.modal').modal();            // initialize
+        $('.modal-trigger').modal();    // open modal
 
         // Change user image
         $('input#upload-user-img').on('change', function() {
-            //let image = $('input#upload-user-img').val()
-            //console.log(image);
-            //$('input#image-name').val(image);
-
             $('#image-change').html('<div class="alert alert-success"><i class="fas fa-check-circle"></i> Image has ben selected, click Save button to save the changes</div>');
         });
     </script>

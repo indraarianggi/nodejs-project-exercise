@@ -1,9 +1,9 @@
 const express = require('express');
 const passport = require('passport');
 const multer = require('multer');
-const fs = require('fs');
+const bcrypt = require('bcryptjs');
 const {ensureAuthenticated} = require('../helpers/auth');
-const {savedImage} = require('../helpers/helper');
+const {savedImage, deleteImage} = require('../helpers/helper');
 const User = require('../models/user');
 
 const router = express.Router();
@@ -61,7 +61,7 @@ router.get('/profile', ensureAuthenticated, (req, res) => {
 });
 
 router.post('/profile/update', ensureAuthenticated, uploader.single('image'), (req, res) => {
-    User.findOne({_id: req.user.id})
+    User.findById(req.user.id)
         .then(user => {
             // new value
             user.name       = req.body.name;
@@ -85,10 +85,7 @@ router.post('/profile/update', ensureAuthenticated, uploader.single('image'), (r
                 // jika sebelumnya ada user image
                 if(user.image) {
                     // Hapus image di folder public/images/user_image
-                    let imagePath = `public${user.image}`;
-                    fs.unlink(imagePath, function(err) {
-                        if(err) throw err;
-                    });
+                    let del = deleteImage(user.image);
                 }
 
                 image = savedImage(req.file.path);
@@ -103,6 +100,40 @@ router.post('/profile/update', ensureAuthenticated, uploader.single('image'), (r
                     req.flash('success', 'User profile updated successfully.');
                     res.redirect('/user/profile');
                 });
+        });
+});
+
+router.post('/password/change', ensureAuthenticated, (req, res) => {
+    User.findById(req.user.id)
+        .then(user => {
+            bcrypt.compare(req.body.current_password, user.password, (err, isMatch) => {
+                if(err) {
+                    console.log(err);
+                }
+
+                if(isMatch) {
+                    // Password match
+                    bcrypt.genSalt(0, (err, salt) => {
+                        bcrypt.hash(req.body.new_password, salt, (err, hash) => {
+                            if(err) {
+                                console.log(err);
+                            } else {
+                                user.password = hash
+        
+                                user.save()
+                                    .then(user => {
+                                        req.flash('success', 'Password changed successfully.');
+                                        res.redirect('/user/profile');
+                                    });
+                            }
+                        });
+                    });
+                } else {
+                    // Password did not match
+                    req.flash('error', 'Failed to change password. The current password you entered is incorrect.');
+                    res.redirect('/user/profile');
+                }
+            });
         });
 });
 

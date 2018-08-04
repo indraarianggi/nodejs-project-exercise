@@ -81,11 +81,38 @@
                 </div>
             </div>
             <div class="row right">
-                <a href="/user/google" class="btn red darken1">
+                <a class="modal-trigger btn red darken-1" href="#modal-change-password">
                     Change Password
                 </a>
                 <input type="submit" value="Save" class="btn yellow accent-4">
             </div>
         </div>
     </form>
+</div>
+
+{{!-- Modal Structure --}}
+<div id="modal-change-password" class="modal">
+    <div class="modal-content">
+        <h4>Change Password</h4>
+        <form action="/user/password/change" method="post">
+            <div class="row">
+                <div class="input-field">
+                    <input type="password" name="current_password" required>
+                    <label for="current_password">Current Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <input type="password" name="new_password" required>
+                    <label for="new_password">New Password</label>
+                </div>
+            </div>
+            <div class="row right">
+                <a class="modal-close waves-effect waves-green btn red darken-1">
+                    Cancel
+                </a>
+                <input type="submit" value="Save" class="btn yellow accent-4">
+            </div>
+        </form>
+    </div>
 </div>

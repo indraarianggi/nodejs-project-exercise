@@ -4,7 +4,7 @@ module.exports = {
             return next();
         }
         
-        req.flash('error', 'You are not authenticated, please login first');
+        req.flash('error', 'You have not logged, please log in first');
         res.redirect('/user/login');
     }
 }

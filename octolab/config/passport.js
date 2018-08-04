@@ -110,7 +110,7 @@ passport.use('local.login', new LocalStrategy({
                     // Password did not match
                     return done(null, false, {message: 'Password did not match.'});
                 }
-            });            
+            });      
         });
 }));
 
