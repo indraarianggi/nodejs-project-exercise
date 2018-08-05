@@ -31,12 +31,33 @@
 
         // Modal
         $('.modal').modal();            // initialize
-        $('.modal-trigger').modal();    // open modal
+        $('.change-password').modal();    // open modal
 
         // Change user image
         $('input#upload-user-img').on('change', function() {
             $('#image-change').html('<div class="alert alert-success"><i class="fas fa-check-circle"></i> Image has ben selected, click Save button to save the changes</div>');
         });
+
+        // Add fields for order detail
+        let wrapper = $('#order-detail-field');
+        let next = 1;
+        $(wrapper).on('click', '.add-field', function(e) {
+            e.preventDefault();
+
+            $(this).replaceWith('<button data-items="' + next + '" class="btn red darken-1 remove-field">-</button>')
+
+            next = next + 1;
+            $(wrapper).append('<tr id="field' + next + '"><td><div class="input-field"><input type="text" name="detailFilm[]" required></div></td><td><div class="input-field"><input type="number" min="0" name="detailQuantity[]" required></div></td><td><div class="input-field"><input type="text" name="detailInstruction[]" required></div></td><td><div class="input-field"><input type="text" name="detailNote[]"></div></td><td><div class="input-field"><button class="add-field btn">+</button></div></td></tr>');
+        })
+
+        $(wrapper).on('click', '.remove-field', function(e) {
+            e.preventDefault();
+            let num = $(this).attr('data-items');
+            console.log('field num : ' + num);
+            let field = "#field" + num;
+            $(field).remove();
+        });
+
     </script>
 </body>
 </html>

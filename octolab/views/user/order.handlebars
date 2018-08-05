@@ -1,1 +1,65 @@
-<h1>Dashboard > Order</h1>
+<div class="row">
+    <div class="col s12 m12">
+        <h4>Order List</h4>
+        <hr>
+        <a href="/order/add" class="btn yellow accent-4">
+            <i class="fas fa-plus"></i> Make New Order
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 m12">
+        {{#if orders}}
+            <table class="bordered striped">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Date</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each orders}}
+                        <tr>
+                            <td>
+                                {{orderCode}}
+                            </td>
+                            <td>
+                                {{date}}
+                            </td>
+                            <td>
+                                {{price}}
+                            </td>
+                            <td>
+                                {{status}}
+                            </td>
+                            <td>
+                                {{#if payment}}
+                                {{else}}
+                                    <a href="/order/confirm" class="btn red">
+                                        Confirm Payment
+                                    </a>
+                                {{/if}}
+                                
+                                {{#if downloadLink}}
+                                    <a href="{{downloadLink}}" class="btn red">
+                                        Download
+                                    </a>
+                                {{/if}}
+
+                                <a href="/order/detail/{{id}}" class="btn">
+                                    Detail
+                                </a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        {{else}}
+            <p class="center">You don't have an order yet</p>
+        {{/if}}
+    </div>
+</div>

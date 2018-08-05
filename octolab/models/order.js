@@ -4,11 +4,13 @@ const Schema = mongoose.Schema;
 
 // Create schema
 const OrderSchema = new Schema({
-    uniqueID: {
-        type    : String
+    orderCode: {
+        type    : String,
+        uppercase: true
     },
     user: {
         type    : Schema.Types.ObjectId,
+        ref     : 'User',
         required: true
     },
     date: {
@@ -17,10 +19,10 @@ const OrderSchema = new Schema({
     },
     details: [
         {
-            detailFilm  : String,
-            detailNumber: Number,
+            detailFilm          : String,
+            detailQuantity      : Number,
             detailInstruction   : String,
-            detailNote  : String
+            detailNote          : String
         }
     ],
     price: {
@@ -28,12 +30,14 @@ const OrderSchema = new Schema({
     },
     status: {
         type    : Number,
-        enum    : [0, 1, 2, 3]
+        enum    : [0, 1, 2, 3, 4, 5]
         /* Status
-            0   => Menunggu Film Sampai (film dikirim oleh user, OctoLab menunggu film sampai)
-            1   => Film Telah Diterima  (film sudah sampai ditangan OctoLab)
-            2   => Film Sedang Diproses (proses pencucian)
-            3   => Film Telah Dikirim   (film telah dikirim kembali ke user)
+            0   => Menunggu konfirmasi pembayaran oleh user
+            1   => Menunggu Film Sampai (pembayaran sudah dikonfirmasi oleh user dan OctoLab, OctoLab menunggu film yang dikirimkan user sampai)
+            2   => Film Telah Diterima  (film sudah sampai ditangan OctoLab)
+            3   => Film Sedang Diproses (proses pencucian)
+            4   => Film Telah Dikirim   (film telah dikirim kembali ke user)
+            5   => Order dibatalkan
         */
     },
     invoice1: {             // Invoice pengiriman oleh user
@@ -42,16 +46,23 @@ const OrderSchema = new Schema({
     invoice2: {             // Invoice pengiriman oleh OctoLab
         type    : String
     },
-    proofPayment: {
-        type    : String
+    payment: {              // Untuk mengubah status menjadi 1
+        name    : String,
+        bank    : String,
+        proof   : String
     },
     downloadLink: {
         type    : String
     },
+    sendBack: {
+        type    : Boolean,
+        default : true,
+        required: false
+    },
     allowPost: {
         type    : Boolean,
         default : true,
-        required: true
+        required: false
     },
     note: {
         type    : String

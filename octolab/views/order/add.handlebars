@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col s12 m12">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-title center">
+                    Make New Order
+                </div>
+
+                {{> _message}}
+                
+                <form action="#" method="post">
+                    <table class="bordered">
+                        <thead>
+                            <tr>
+                                <th>Film</th>
+                                <th>Quantity</th>
+                                <th>Instruction</th>
+                                <th>Note</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-detail-field">
+                            <tr id="field1">
+                                <td>
+                                    <div class="input-field">
+                                        <input type="text" name="detailFilm[]" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-field">
+                                        <input type="number" min="0" name="detailQuantity[]" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-field">
+                                        <input type="text" name="detailInstruction[]" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-field">
+                                        <input type="text" name="detailNote[]">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-field">
+                                        {{!-- <buttons id="add1" class="btn add-more">+</button> --}}
+                                        <button class="add-field btn">+</button>
+                                        {{!-- <button data-items="1" class="remove-field btn red darken-1">-</button> --}}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <input type="submit" value="Process" class="btn btn-form yellow accent-4">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <span class="center">
+            <p>
+                Before ordering, don't forget to read our <a href="/procedure">Procedure</a> and <a href="/pricelist">Price List</a>.
+            </p>
+        </span>
+    </div>
+</div>

@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const {ensureAuthenticated} = require('../helpers/auth');
 const {savedImage, deleteImage} = require('../helpers/helper');
 const User = require('../models/user');
+const Order = require('../models/order');
 
 const router = express.Router();
 
@@ -138,12 +139,13 @@ router.post('/password/change', ensureAuthenticated, (req, res) => {
 });
 
 router.get('/order', ensureAuthenticated, (req, res) => {
-    res.render('user/order', {layout: 'user.dashboard.handlebars'});
-});
-
-router.get('/confirm', ensureAuthenticated, (req, res) => {
-    res.render('user/confirm', {layout: 'user.dashboard.handlebars'});
+    Order.find({user: req.user.id})
+        .then(orders => {
+            res.render('user/order', {
+                orders: orders,
+                layout: 'user.dashboard.handlebars'
+            });
+        });
 });
 
 module.exports = router;
-
