@@ -94,3 +94,9 @@
     opacity: 0;
     filter: alpha(opacity=0);
 }
+
+/* ===== ORDER ===== */
+/* ================= */
+table#order-details {
+    margin-bottom: 2em;
+}

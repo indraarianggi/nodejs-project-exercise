@@ -14,4 +14,62 @@ router.get('/add', ensureAuthenticated, (req, res) => {
     res.render('order/add', {layout: 'user.dashboard.handlebars'});
 });
 
+router.post('/add', ensureAuthenticated, (req, res) => {
+    let detailFilms = req.body.detailFilm;
+    let detailQuantities = req.body.detailQuantity;
+    let detailInstructions = req.body.detailInstruction;
+    let detailNotes = req.body.detailNote;
+
+    let details = [];
+    let n = detailFilms.length;
+    for(i=0;i<n;i++) {
+        content = {
+            detailFilm          : detailFilms[i],
+            detailQuantity      : detailQuantities[i],
+            detailInstruction   : detailInstructions[i],
+            detailNote          : detailNotes[i]
+        }
+
+        details.push(content);
+    }
+
+    let sendBack;
+    let allowPost;
+
+    if(req.body.sendBack) {
+        sendBack = true;
+    } else {
+        sendBack = false
+    }
+    if(req.body.allowPost) {
+        allowPost = true;
+    } else {
+        allowPost = false;
+    }
+
+    let note = req.body.note;
+    
+    Order.countDocuments({}, function(err, count) {
+        let code = `OL${count+1}`;
+
+        const newOrder = {
+            orderCode   : code,
+            user        : req.user.id,
+            details     : details,
+            status      : 0,
+            sendBack    : sendBack,
+            allowPost   : allowPost,
+            note        : note
+        }
+        
+        new Order(newOrder)
+            .save()
+            .then(order => {
+                req.flash('success', 'Order created successfully.')
+                res.redirect('/user/order');
+            });
+    });
+
+});
+
 module.exports = router;

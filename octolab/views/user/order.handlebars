@@ -28,10 +28,14 @@
                                 {{orderCode}}
                             </td>
                             <td>
-                                {{date}}
+                                {{formatDate date 'MM-DD-YYYY'}}
                             </td>
                             <td>
-                                {{price}}
+                                {{#if price}}
+                                    {{price}}
+                                {{else}}
+                                    <span class="tooltipped" data-position="bottom" data-tooltip="Menunggu konfirmasi harga dari OctoLab">Belum tersedia <i class="fas fa-info-circle"></i></span>
+                                {{/if}}
                             </td>
                             <td>
                                 {{status}}

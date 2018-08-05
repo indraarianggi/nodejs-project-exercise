@@ -60,10 +60,10 @@ passport.use('local.signup', new LocalStrategy({
             }
 
             // create new user
-            const newUser = new User({
+            const newUser = {
                 name        : req.body.name,
                 email       : email
-            });
+            };
             
             bcrypt.genSalt(0, (err, salt) => {
                 bcrypt.hash(password, salt, (err, hash) => {

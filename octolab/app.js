@@ -17,6 +17,9 @@ const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const orderRouter = require('./routes/order');
 
+// Load handlebars helpers
+const {formatDate} = require('./helpers/hbs');
+
 // Map global promises
 mongoose.Promise = global.Promise;
 // Mongoose Connect
@@ -35,7 +38,10 @@ app.use(bodyParser.json());
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
-    defaultLayout: 'main'
+    defaultLayout: 'main',
+    helpers: {
+        formatDate: formatDate
+    }
 }));
 app.set('view engine', 'handlebars');
 

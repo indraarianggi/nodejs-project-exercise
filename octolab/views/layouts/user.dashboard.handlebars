@@ -44,10 +44,10 @@
         $(wrapper).on('click', '.add-field', function(e) {
             e.preventDefault();
 
-            $(this).replaceWith('<button data-items="' + next + '" class="btn red darken-1 remove-field">-</button>')
+            $(this).replaceWith('<button data-items="' + next + '" class="btn red darken-1 remove-field"><i class="fas fa-minus"></i></button>')
 
             next = next + 1;
-            $(wrapper).append('<tr id="field' + next + '"><td><div class="input-field"><input type="text" name="detailFilm[]" required></div></td><td><div class="input-field"><input type="number" min="0" name="detailQuantity[]" required></div></td><td><div class="input-field"><input type="text" name="detailInstruction[]" required></div></td><td><div class="input-field"><input type="text" name="detailNote[]"></div></td><td><div class="input-field"><button class="add-field btn">+</button></div></td></tr>');
+            $(wrapper).append('<tr id="field' + next + '"><td><div class="input-field"><input type="text" name="detailFilm" required></div></td><td><div class="input-field"><input type="number" min="0" name="detailQuantity" required></div></td><td><div class="input-field"><input type="text" name="detailInstruction" required></div></td><td><div class="input-field"><input type="text" name="detailNote"></div></td><td><div class="input-field"><button class="add-field btn"><i class="fas fa-plus"></i></button></div></td></tr>');
         })
 
         $(wrapper).on('click', '.remove-field', function(e) {
@@ -56,6 +56,16 @@
             console.log('field num : ' + num);
             let field = "#field" + num;
             $(field).remove();
+        });
+
+        // CKEDitor
+        CKEDITOR.replace('textarea1', {
+            plugins: 'wysiwygarea, toolbar, basicstyles, link'
+        });
+
+        // Tooltip
+        $(document).ready(function(){
+            $('.tooltipped').tooltip();
         });
 
     </script>

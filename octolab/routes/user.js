@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const multer = require('multer');
 const bcrypt = require('bcryptjs');
-const {ensureAuthenticated} = require('../helpers/auth');
+const {ensureAuthenticated, ensureGuest} = require('../helpers/auth');
 const {savedImage, deleteImage} = require('../helpers/helper');
 const User = require('../models/user');
 const Order = require('../models/order');
@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 });
 const uploader = multer({storage});
 
-router.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+router.get('/google', ensureGuest, passport.authenticate('google', {scope: ['profile', 'email']}));
 
 router.get('/google/callback', 
     passport.authenticate('google', { failureRedirect: '/' }),
@@ -28,11 +28,11 @@ router.get('/google/callback',
     }
 );
 
-router.get('/login', (req, res) => {
+router.get('/login', ensureGuest, (req, res) => {
     res.render('user/login'); //, {message: req.flash('error')}
 });
 
-router.get('/signup', (req, res) => {
+router.get('/signup', ensureGuest, (req, res) => {
     res.render('user/signup'); //, {message: req.flass('error')}
 });
 
