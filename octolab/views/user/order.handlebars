@@ -41,15 +41,17 @@
                                 <span class="tooltipped" data-position="bottom" data-tooltip="{{orderStatus status}}">{{status}} <i class="fas fa-info-circle"></i></span>
                             </td>
                             <td>
-                                {{#if payment}}
+                                {{#if payment.status}}
                                 {{else}}
-                                    <a href="/order/confirm" class="btn red">
-                                        Confirm Payment
-                                    </a>
+                                    {{#if price}}
+                                        <a href="/order/confirm" class="btn red">
+                                            Confirm Payment
+                                        </a>
+                                    {{/if}}
                                 {{/if}}
                                 
                                 {{#if downloadLink}}
-                                    <a href="{{downloadLink}}" class="btn red">
+                                    <a href="{{downloadLink}}" class="btn" target="_blank">
                                         Download
                                     </a>
                                 {{/if}}

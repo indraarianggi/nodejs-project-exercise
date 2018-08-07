@@ -22,7 +22,7 @@
     </div>
     <div class="col s6 m6">
         {{#if order.downloadLink}}
-            <a href="{{order.downloadLink}}" class="btn">Download here</a>
+            <a href="{{order.downloadLink}}" class="btn" target="_blank">Download here</a>
         {{/if}}
     </div>
 </div>
@@ -89,6 +89,7 @@
         {{#if order.price}}
             {{order.price}}
             {{#if order.payment.status}}
+            {{else}}
                 <span class="tooltipped" data-position="bottom" data-tooltip="Mohon segera melakukan pembayaran dan pengiriman film."> <i class="fas fa-info-circle"></i></span>
             {{/if}}
         {{else}}

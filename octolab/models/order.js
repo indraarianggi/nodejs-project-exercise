@@ -53,6 +53,7 @@ const OrderSchema = new Schema({
             type    : Boolean,
             default : false
         },
+        amount  : String,
         name    : String,
         bank    : String,
         proof   : String

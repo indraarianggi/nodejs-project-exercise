@@ -86,7 +86,7 @@ router.post('/profile/update', ensureAuthenticated, uploader.single('image'), (r
                 // jika sebelumnya ada user image
                 if(user.image) {
                     // Hapus image di folder public/images/user_image
-                    let del = deleteImage(user.image);
+                    deleteImage(user.image);
                 }
 
                 image = savedImage(req.file.path);

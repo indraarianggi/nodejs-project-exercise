@@ -38,6 +38,11 @@
             $('#image-change').html('<div class="alert alert-success"><i class="fas fa-check-circle"></i> Image has ben selected, click Save button to save the changes</div>');
         });
 
+        // Upload proof of payment
+        $('input#upload-proof-payment').on('change', function() {
+            $('#image-proof').html('<div class="alert alert-success"><i class="fas fa-check-circle"></i> Image has ben selected</div>');
+        });
+
         // Add fields for order detail
         let wrapper = $('#order-detail-field');
         let next = 1;
