@@ -15,22 +15,34 @@ router.get('/add', ensureAuthenticated, (req, res) => {
 });
 
 router.post('/add', ensureAuthenticated, (req, res) => {
+    let numFilm = req.body.numFilm;
     let detailFilms = req.body.detailFilm;
     let detailQuantities = req.body.detailQuantity;
     let detailInstructions = req.body.detailInstruction;
     let detailNotes = req.body.detailNote;
 
     let details = [];
-    let n = detailFilms.length;
-    for(i=0;i<n;i++) {
+    if(numFilm == 1) {
         content = {
-            detailFilm          : detailFilms[i],
-            detailQuantity      : detailQuantities[i],
-            detailInstruction   : detailInstructions[i],
-            detailNote          : detailNotes[i]
+            detailFilm          : detailFilms,
+            detailQuantity      : detailQuantities,
+            detailInstruction   : detailInstructions,
+            detailNote          : detailNotes
         }
 
         details.push(content);
+    } else {
+        let n = detailFilms.length;
+        for(i=0;i<n;i++) {
+            content = {
+                detailFilm          : detailFilms[i],
+                detailQuantity      : detailQuantities[i],
+                detailInstruction   : detailInstructions[i],
+                detailNote          : detailNotes[i]
+            }
+
+            details.push(content);
+        }
     }
 
     let sendBack;
@@ -71,5 +83,13 @@ router.post('/add', ensureAuthenticated, (req, res) => {
     });
 
 });
+
+router.get('/detail/:id', ensureAuthenticated, (req, res) => {
+    Order.findById(req.params.id)
+        .then(order => {
+            res.render('order/detail', {order: order, layout: 'user.dashboard.handlebars'});
+        });
+    
+})
 
 module.exports = router;

@@ -28,7 +28,7 @@
                                 {{orderCode}}
                             </td>
                             <td>
-                                {{formatDate date 'MM-DD-YYYY'}}
+                                {{formatDate date 'MMMM Do YYYY'}}
                             </td>
                             <td>
                                 {{#if price}}
@@ -38,7 +38,7 @@
                                 {{/if}}
                             </td>
                             <td>
-                                {{status}}
+                                <span class="tooltipped" data-position="bottom" data-tooltip="{{orderStatus status}}">{{status}} <i class="fas fa-info-circle"></i></span>
                             </td>
                             <td>
                                 {{#if payment}}

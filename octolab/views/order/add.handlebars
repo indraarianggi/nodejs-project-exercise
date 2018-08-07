@@ -20,6 +20,7 @@
                             </tr>
                         </thead>
                         <tbody id="order-detail-field">
+                            <input type="hidden" name="numFilm" id="numFilm" value="1">
                             <tr id="field1">
                                 <td>
                                     <div class="input-field">
@@ -54,7 +55,9 @@
                         <div class="col s12 m12">
                             <p>
                                 <input type="checkbox" name="sendBack" class="filled-in" id="send-back">
-                                <label for="send-back">Send the negative film back to me</label>
+                                <label for="send-back">
+                                    <span class="tooltipped" data-position="bottom" data-tooltip="Mohon mengisi data alamat di Profile Anda.">Send the negative film back to me <i class="fas fa-info-circle"></i></span>
+                                </label>
                             </p>
                         </div>
                     </div>

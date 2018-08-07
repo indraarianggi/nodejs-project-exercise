@@ -48,18 +48,27 @@
 
             next = next + 1;
             $(wrapper).append('<tr id="field' + next + '"><td><div class="input-field"><input type="text" name="detailFilm" required></div></td><td><div class="input-field"><input type="number" min="0" name="detailQuantity" required></div></td><td><div class="input-field"><input type="text" name="detailInstruction" required></div></td><td><div class="input-field"><input type="text" name="detailNote"></div></td><td><div class="input-field"><button class="add-field btn"><i class="fas fa-plus"></i></button></div></td></tr>');
+
+            let numFilm = parseInt($('#numFilm').attr('value'));
+            numFilm = numFilm + 1;
+            $('#numFilm').attr('value', numFilm);
+            console.log('jumlah field sekarang: ' + numFilm);
         })
 
         $(wrapper).on('click', '.remove-field', function(e) {
             e.preventDefault();
             let num = $(this).attr('data-items');
-            console.log('field num : ' + num);
             let field = "#field" + num;
             $(field).remove();
+
+            let numFilm = parseInt($('#numFilm').attr('value'));
+            numFilm = numFilm - 1;
+            $('#numFilm').attr('value', numFilm);
+            console.log('jumlah field sekarang: ' + numFilm);
         });
 
         // CKEDitor
-        CKEDITOR.replace('textarea1', {
+        CKEDITOR.replace('note', {
             plugins: 'wysiwygarea, toolbar, basicstyles, link'
         });
 

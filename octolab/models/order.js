@@ -30,15 +30,16 @@ const OrderSchema = new Schema({
     },
     status: {
         type    : Number,
-        enum    : [0, 1, 2, 3, 4, 5, 6]
+        enum    : [0, 1, 2, 3, 4, 5, 6, 7]
         /* Status
             0   => Menunggu konfirmasi dari OctoLab (mengenai jumlah harga yang harus dibayar)
-            1   => Menunggu konfirmasi pembayaran oleh user
+            1   => Menunggu konfirmasi pembayaran & prngiriman oleh user
             2   => Menunggu Film Sampai (pembayaran sudah dikonfirmasi oleh user dan OctoLab, OctoLab menunggu film yang dikirimkan user sampai)
             3   => Film Telah Diterima  (film sudah sampai ditangan OctoLab)
             4   => Film Sedang Diproses (proses pencucian)
-            5   => Film Telah Dikirim   (film telah dikirim kembali ke user)
-            6   => Order dibatalkan
+            5   => Film Selesai Diproses (link download telah tersedia)
+            6   => Film Telah Dikirim (film telah dikirim kembali ke user)
+            7   => Order dibatalkan
         */
     },
     invoice1: {             // Invoice pengiriman oleh user
@@ -48,6 +49,10 @@ const OrderSchema = new Schema({
         type    : String
     },
     payment: {              // Untuk mengubah status menjadi 1
+        status  : {
+            type    : Boolean,
+            default : false
+        },
         name    : String,
         bank    : String,
         proof   : String
