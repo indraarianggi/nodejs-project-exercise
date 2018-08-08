@@ -1,0 +1,39 @@
+{{!-- HEADER USER DASHBOARD --}}
+<nav class="yellow accent-4">
+    <div class="container">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo center">
+                OctoLab
+            </a>
+            <a href="#" data-activates="main-menu" class="button-collapse show-on-large">
+                <i class="fa fa-bars"></i>
+            </a>
+            {{!-- RIGHT NAV --}}
+            <ul class="right hide-on-small-only">
+                <li>
+                    Hi {{admin.name}}
+                </li>
+            </ul>
+
+            {{!-- SIDE MENU --}}
+            <ul class="side-nav" id="main-menu">
+                <li>
+                    <a href="/admin/overview">Overview</a>
+                </li>
+                <li>
+                    <a href="/admin/order">Order</a>
+                </li>
+                <li>
+                    <a href="/admin/galley">Gallery Management</a>
+                </li>
+                <li>
+                    <a href="/admin/message">Message</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="/admin/logout">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

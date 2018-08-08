@@ -1,0 +1,83 @@
+{{!-- ADMIN SIGNUP --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    {{!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> --}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>OctoLab | Admin Sign Up</title>
+</head>
+<body>
+    
+    <main>
+        <div class="container dashboard">
+            <div id="signup" class="row">
+                <div class="col s12 m6 offset-m3">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-title center">
+                                Admin Sign Up
+                            </div>
+
+                            {{> _message}}
+                            
+                            <form action="/admin/signup" enctype="multipart/form-data" method="post">
+                                <div class="row">
+                                    <div class="input-field">
+                                        <input type="text" name="name" required>
+                                        <label for="name">Name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field">
+                                        <input type="text" name="email" required>
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field">
+                                        <input type="password" name="password" required>
+                                        <label for="password">Password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field">
+                                        <input type="password" name="conf_password" required>
+                                        <label for="conf_password">Confirm Password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12 m12 fileUpload btn btn-form grey">
+                                        <span>Upload image</span>
+                                        <input id="upload-admin-image" type="file" name="image" class="upload" required/>
+                                    </div>
+                                </div>
+                                <span id="admin-image"></span>
+                                <div class="row">
+                                    <input type="submit" value="Sign Up" class="btn btn-form yellow accent-4">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
+
+    <script>
+        // Upload admin image
+        $('input#upload-admin-image').on('change', function() {
+            $('#admin-image').html('<div class="alert alert-success"><i class="fas fa-check-circle"></i> Image has ben selected</div>');
+        });
+    </script>
+
+</body>
+</html>

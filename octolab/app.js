@@ -11,9 +11,11 @@ const keys = require('./config/keys');
 
 // Load Passport Configuration
 require('./config/passport');
+require('./config/passport.admin');
 
 // Load Routes
 const indexRouter = require('./routes/index');
+const adminRouter = require('./routes/admin');
 const userRouter = require('./routes/user');
 const orderRouter = require('./routes/order');
 
@@ -62,6 +64,7 @@ app.use(passport.session());
 // Set Global Variables
 app.use((req, res, next) => {
     res.locals.user = req.user || null;
+    res.locals.admin = req.admin || null; // ????
     res.locals.success_msg = req.flash('success');
     res.locals.error_msg = req.flash('error');
     next();
@@ -72,6 +75,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Use Routes
 app.use('/', indexRouter);
+app.use('/admin', adminRouter);
 app.use('/user', userRouter);
 app.use('/order', orderRouter);
 
