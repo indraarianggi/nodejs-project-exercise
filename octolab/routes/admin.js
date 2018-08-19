@@ -1,8 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const multer = require('multer');
-const {ensureAuthenticated, ensureGuest} = require('../helpers/auth');
-const Admin = require('../models/admin');
+const {ensureAdmin, ensureAdminLogged} = require('../helpers/auth');
 const User = require('../models/user');
 const Order = require('../models/order');
 
@@ -17,11 +16,11 @@ const storage = multer.diskStorage({
 });
 const uploader = multer({storage});
 
-router.get('/login', (req, res) => {
+router.get('/login', ensureAdminLogged, (req, res) => {
     res.render('admin/login', {layout: false});
 });
 
-router.get('/signup', (req, res) => {
+router.get('/signup', ensureAdminLogged, (req, res) => {
     res.render('admin/signup', {layout: false});
 });
 
@@ -47,8 +46,57 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-router.get('/overview', (req, res) => {
-    res.send('Admin Overview');
-})
+router.get('/overview', ensureAdmin, (req, res) => {
+
+    User.countDocuments({role: 'user'}, function(err, nu) {
+        let numUser = nu;
+
+        Order.countDocuments({status: 0}, function(err, nio) {
+             let numIncomingOrder = nio;
+
+             Order.countDocuments({status: {'$gte': 5}}, function(err, nfo) {
+                 let numFinishedOrder = nfo;
+
+                 res.render('admin/overview', {
+                     numUser            : numUser,
+                     numIncomingOrder   : numIncomingOrder,
+                     numFinishedOrder   : numFinishedOrder,
+                     layout             : 'admin.dashboard.handlebars'
+                    });
+             });
+        });
+    });
+});
+
+router.get('/order/:criteria?', (req, res) => { //ensureAdmin
+    if(req.params.criteria == 0) {
+        Order.find({status: 0})
+            .populate('user')
+            .then(orders => {
+                res.render('admin/order', {
+                    orders  : orders,
+                    layout  : 'admin.dashboard.handlebars'
+                });
+            });
+    } else if(req.params.criteria == 5) {
+        Order.find({status: {'$gte': 5}})
+            .populate('user')
+            .then(orders => {
+                res.render('admin/order', {
+                    orders  : orders,
+                    layout  : 'admin.dashboard.handlebars'
+                });
+            });
+    } else {
+        Order.find()
+            .populate('user')
+            .then(orders => {
+                res.render('admin/order', {
+                    orders  : orders,
+                    layout  : 'admin.dashboard.handlebars'
+                });
+            });
+    }
+});
 
 module.exports = router;

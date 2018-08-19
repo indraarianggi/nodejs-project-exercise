@@ -148,4 +148,77 @@ router.get('/order', ensureAuthenticated, (req, res) => {
         });
 });
 
+router.get('/hitung', (req, res) => {
+    let a = 1, b = 2, c;
+    console.log(a);
+    console.log(b);
+    for(i=1; i<= 10; i++) {
+        c = a + b;
+        console.log(c);
+        
+        a = b;
+        b = c;
+    }
+
+    res.redirect('/');
+});
+
+router.get('/kame', (req, res) => {
+    
+    n = 7;
+
+    prefix = ['k', 'm', 'h', 'm', 'h'];
+    m = prefix.length;
+
+    let yel = '';
+    for(i=0;i<m;i++) {
+        yel += ` ${prefix[i]}`;
+        
+        for(j=0;j<n;j++) {
+            if(i%2 == 1) {
+                yel += 'e';
+            } else {
+                yel += 'a';
+            }
+        }
+    }
+
+    console.log(yel);
+
+
+    // console.log('k');
+
+    // for(i=1;i<=4;i++) {
+    //     console.log('a');
+    // }
+
+    // console.log('m');
+
+    // for(i=1;i<=4;i++) {
+    //     console.log('e');
+    // }
+
+    // console.log('h')
+
+    // for(i=1;i<=4;i++) {
+    //     console.log('a');
+    // }
+
+    // console.log('m')
+
+    // for(i=1;i<=4;i++) {
+    //     console.log('e');
+    // }
+
+    // console.log('h')
+
+    // for(i=1;i<=4;i++) {
+    //     console.log('a');
+    // }
+
+    res.redirect('/');
+});
+
+
+
 module.exports = router;

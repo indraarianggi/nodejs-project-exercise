@@ -2,7 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 const {savedImage, deleteImage} = require('../helpers/helper');
-const Admin = require('../models/admin');
+const User = require('../models/user');
 
 // Local Strategy - Admin Signup
 passport.use('admin.signup', new LocalStrategy({
@@ -20,17 +20,18 @@ passport.use('admin.signup', new LocalStrategy({
         return done(null, false, {message: 'Password did not match.'})
     }
 
-    Admin.findOne({email: email})
-        .then(admin => {
-            // admin already exist
-            if(admin) {
+    User.findOne({role: 'admin', email: email})
+        .then(user => {
+            // user already exist
+            if(user) {
                 // hapus image yang sudah terlanjur terupload
                 deleteImage(image);
                 return done(null, false, {message: `Admin with email ${email} already exist.`});
             }
 
             // Create new admin
-            const newAdmin = {
+            const newUser = {
+                role    : 'admin',
                 name    : req.body.name,
                 email   : email,
                 image   : image
@@ -41,11 +42,11 @@ passport.use('admin.signup', new LocalStrategy({
                     if(err) {
                         console.log(err);
                     } else {
-                        newAdmin.password = hash
+                        newUser.password = hash
 
-                        new Admin(newAdmin)
+                        new User(newUser)
                             .save()
-                            .then(admin => done(null, admin));
+                            .then(user => done(null, user));
                     }
                 });
             });
@@ -59,20 +60,20 @@ passport.use('admin.login', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, (req, email, password, done) => {
-    Admin.findOne({email: email})
-        .then(admin => {
-            if(!admin) {
+    User.findOne({role: 'admin', email: email})
+        .then(user => {
+            if(!user) {
                 return done(null, false, {message: `Admin with email ${email} not found.`});
             }
 
-            bcrypt.compare(password, admin.password, (err, isMatch) => {
+            bcrypt.compare(password, user.password, (err, isMatch) => {
                 if(err) {
                     console.log(err);
                 }
 
                 if(isMatch) {
                     // Admin exist and password match
-                    return done(null, admin);
+                    return done(null, user);
                 } else {
                     // Password did not match
                     return done(null, false, {message: 'Password did not match.'});
@@ -81,11 +82,11 @@ passport.use('admin.login', new LocalStrategy({
         });
 }));
 
-passport.serializeUser(function(admin, done) {
-    done(null, admin.id);
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
     Admin.findById(id)
-        .then(admin => done(null, admin));
+        .then(user => done(null, user));
 });

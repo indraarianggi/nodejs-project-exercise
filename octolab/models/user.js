@@ -5,6 +5,11 @@ const Schema = mongoose.Schema;
 
 // Create schema
 const UserSchema = new Schema({
+    role: {
+        type    : String,
+        enum    : ['user', 'admin'],
+        default : 'user'
+    },
     googleID: {
         type    : String,
         required: false
